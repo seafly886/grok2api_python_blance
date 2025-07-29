@@ -1,0 +1,32 @@
+name = "grok2api-python-blance"
+main = "src/index.js"
+compatibility_date = "2025-07-29"
+
+# 容器配置
+[[containers]]
+class_name = "GrokContainer"
+image = "./Dockerfile"  # 指向项目中的 Dockerfile
+name = "grok-container"
+
+# 容器环境变量绑定
+[[durable_objects.bindings]]
+class_name = "GrokContainer"
+name = "GROK_CONTAINER"
+
+# 应用环境变量 (非敏感变量)
+[vars]
+MANAGER_SWITCH = "true"
+IS_TEMP_CONVERSATION = "true"
+IS_CUSTOM_SSO = "false"
+SHOW_THINKING = "true"
+ISSHOW_SEARCH_RESULTS = "false"
+PORT = "8698"
+SHOW_THINKING_AGAIN = "false"  # 注意：您有两个SHOW_THINKING参数
+
+# 敏感变量使用 secrets 存储 (需单独设置)
+[secrets]
+SSO = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiMTEzYTgwNTctZTI5OS00YjVhLWEwNWMtNjM4YmJhZmYxNDUwIn0.0NY4zkRae34fX8E92HDs8EG7dVTOU3GXTqlkaPHyY5E"
+SSO_SUPER = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzZXNzaW9uX2lkIjoiYTkwZjY4NWMtMjg3My00NzViLWExNWUtMDhlYzIwNDBjODI5In0.L6OKl-cFSvWDUTGIej7s0bKO_c7Gk0sNoXWI0neDxAw"
+API_KEY = "123456"
+ADMINPASSWORD = "ts-123456"
+PICGO_KEY = "chv_SGnkL_f4d2883148ff21f01a15a6d71ab545da3d14aec2055d4bdb42401229591a52acb712dbea8f98237928b94df3dc11d4f2c2441adddc5b7263d99165f68a02d172"
